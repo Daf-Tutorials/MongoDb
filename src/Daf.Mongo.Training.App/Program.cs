@@ -23,41 +23,46 @@ var accountsManager  = services.BuildServiceProvider().GetRequiredService<IManag
 // var result = await accountsManager.Update(acc => acc.AccountId=="MDB829001337", update);
 //
 
-var update = Builders<Account>
-  .Update
-  .Inc("balance", 60000);
-
-var result = await accountsManager
-  .UpdateMany(acc => acc.Balance < 60000000, update);
-
-if (result.IsAcknowledged)
-  Console.WriteLine(result.ModifiedCount);
+// var update = Builders<Account>
+//   .Update
+//   .Inc("balance", 60000);
+//
+// var result = await accountsManager
+//   .UpdateMany(acc => acc.Balance < 60000000, update);
+//
+// if (result.IsAcknowledged)
+//   Console.WriteLine(result.ModifiedCount);
 
 // var newAccount = new Account
 // {
-//   AccountId = "MDB829001337",
-//   AccountHolder = "Linus Torvalds",
+//   AccountId = "MDB999001347",
+//   AccountHolder = "John Von Neumann",
 //   AccountType = "checking",
-//   Balance = 50352434
+//   Balance = 780400127
 // };
-// var accountA = new Account
-// {
-//   AccountId = "MDB829001356",
-//   AccountHolder = "Robert C. Martin",
-//   AccountType = "checking",
-//   Balance = 503577764
-// };
+// // var accountA = new Account
+// // {
+// //   AccountId = "MDB829001356",
+// //   AccountHolder = "Robert C. Martin",
+// //   AccountType = "checking",
+// //   Balance = 503577764
+// // };
+// //
+// // var accountB = new Account
+// // {
+// //   AccountId = "MDB011235813",
+// //   AccountHolder = "Ada Lovelace",
+// //   AccountType = "checking",
+// //   Balance = 60218
+// // };
+// // await accountsManager.InsertOneAsync(newAccount);
+// // await accountsManager.InsertManyAsync([accountA, accountB]);
+// // var accountsList = await accountsManager.GetAll();
+// // Console.WriteLine("Listing accounts");
+// //
+// // accountsList.ToList().ForEach(acc => Console.WriteLine(acc.AccountHolder));
 //
-// var accountB = new Account
-// {
-//   AccountId = "MDB011235813",
-//   AccountHolder = "Ada Lovelace",
-//   AccountType = "checking",
-//   Balance = 60218
-// };
-// await accountsManager.InsertOneAsync(newAccount);
-// await accountsManager.InsertManyAsync([accountA, accountB]);
-// var accountsList = await accountsManager.GetAll();
-// Console.WriteLine("Listing accounts");
+// var result = await accountsManager.Delete(account => account.AccountHolder == "John Von Neumann");
 //
-// accountsList.ToList().ForEach(acc => Console.WriteLine(acc.AccountHolder));
+// if(result.IsAcknowledged)
+//   Console.WriteLine($"{result.DeletedCount} account has/vann been deleted");

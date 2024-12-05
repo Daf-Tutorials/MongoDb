@@ -10,6 +10,9 @@ public static class ServiceCollectionExtensions
   {
     services.AddSingleton<IConnectToMongo, MongoDriver>();
     services.AddTransient<IManageCollection<Account>, AccountsManager>();
+    services.AddScoped<IIdentifyCollection<Transfer>, TransferManager>();
+    services.AddScoped<IInsertDocuments<Transfer>, TransferManager>();
+
     return services;
   }
 }

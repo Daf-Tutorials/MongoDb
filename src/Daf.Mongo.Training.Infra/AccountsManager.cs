@@ -20,9 +20,6 @@ public class AccountsManager : IManageCollection<Account>
   public IMongoCollection<Account> GetCollection() => _accounts;
   public async Task<IEnumerable<Account>> GetAll() => (await _accounts.FindAsync(_ => true)).ToList();
   
-  public void InsertOne(Account entity) => _accounts.InsertOne(entity);
-  public void InsertMany(IEnumerable<Account> entities) => _accounts.InsertMany(entities);
-  
   public async Task InsertOneAsync(Account entity) => await _accounts.InsertOneAsync(entity);
   public async Task InsertManyAsync(IEnumerable<Account> entities) => await _accounts.InsertManyAsync(entities);
   
@@ -32,4 +29,9 @@ public class AccountsManager : IManageCollection<Account>
   public async Task<UpdateResult> UpdateMany(Expression<Func<Account, bool>> predicate, UpdateDefinition<Account> updateDefinition)
     => await _accounts.UpdateManyAsync(predicate, updateDefinition);
 
+  public async Task<DeleteResult> Delete(Expression<Func<Account, bool>> predicate)
+    => await _accounts.DeleteOneAsync(predicate);
+
+  public async Task<DeleteResult> DeleteMany(Expression<Func<Account, bool>> predicate)
+    => await _accounts.DeleteManyAsync(predicate);
 }
