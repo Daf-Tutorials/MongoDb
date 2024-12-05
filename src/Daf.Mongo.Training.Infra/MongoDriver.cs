@@ -1,6 +1,7 @@
-﻿using MongoDB.Driver;
+﻿using Daf.Mongo.Training.Domain.Infrastructure;
+using MongoDB.Driver;
 
-namespace Daf.Mongo.Training.Domain.Infrastructure;
+namespace Daf.Mongo.Training.Infra;
 
 internal class MongoDriver : IConnectToMongo
 {
@@ -11,4 +12,9 @@ internal class MongoDriver : IConnectToMongo
 
   public IEnumerable<MongoDB.Bson.BsonDocument> GetDatabases()
     => _client.ListDatabases().ToList();
+
+  public IMongoDatabase GetDatabase(string databaseName)
+  {
+    return _client.GetDatabase(databaseName);
+  }
 }

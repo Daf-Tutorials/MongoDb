@@ -3,10 +3,10 @@ using MongoDB.Bson.Serialization.Attributes;
 
 namespace Daf.Mongo.Training.Domain.Models;
 
-public class Accounts
+public class Account
 {
   [BsonId]
-  [BsonRepresentation(MongoDB.Bson.BsonType.ObjectId)]     
+  [BsonRepresentation(BsonType.ObjectId)]     
   public string Id { get; set; }
      
   [BsonElement("account_id")]
