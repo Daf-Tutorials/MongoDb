@@ -1,8 +1,8 @@
 ﻿using MongoDB.Driver;
 
-namespace Daf.Mongo.Training.Domain;
+namespace Daf.Mongo.Training.Domain.Infrastructure;
 
-public class MongoDriver
+internal class MongoDriver : IConnectToMongo
 {
   private const string ConnectionString =
     "mongodb+srv://dafdev:jpHtRY3vM6bvNK7O@normal.aycpm.mongodb.net/?retryWrites=true&w=majority&appName=Normal";
