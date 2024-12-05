@@ -1,14 +1,17 @@
-﻿using Daf.Mongo.Training.Domain.DependencyInjection;
-using Daf.Mongo.Training.Domain.Infrastructure;
-using Daf.Mongo.Training.Domain.Models;
+﻿using Daf.Mongo.Training.App;
+using Daf.Mongo.Training.Domain.DependencyInjection;
 using Daf.Mongo.Training.Infra.DependencyInjection;
 using Microsoft.Extensions.DependencyInjection;
-using MongoDB.Driver;
 
 var services = new ServiceCollection()
   .AddInfra()
-  .AddDomain();
-var accountsManager  = services.BuildServiceProvider().GetRequiredService<IManageCollection<Account>>();
+  .AddDomain()
+  .AddSingleton<TransferService>()
+  .BuildServiceProvider();
+var transferService = services.GetRequiredService<TransferService>();
+await transferService.Execute("MDB829001337", "MDB011235813", 200, "TR02081994");
+
+//var accountsManager  = services.GetRequiredService<IManageCollection<Account>>();
 
 // You can also use the builders class to filter but I did not implement
 // it in my interface

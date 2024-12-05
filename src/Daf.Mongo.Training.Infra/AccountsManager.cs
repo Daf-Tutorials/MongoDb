@@ -34,4 +34,6 @@ public class AccountsManager : IManageCollection<Account>
 
   public async Task<DeleteResult> DeleteMany(Expression<Func<Account, bool>> predicate)
     => await _accounts.DeleteManyAsync(predicate);
+
+  public Account GetById(string fromId) => _accounts.Find(account => account.AccountId == fromId).FirstOrDefault();
 }
